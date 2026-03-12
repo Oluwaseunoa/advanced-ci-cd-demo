@@ -1,0 +1,25 @@
+{
+  "name": "advanced-ci-cd-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest --coverage",
+    "lint": "eslint src/",
+    "build": "mkdir -p dist && cp -r src dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.3",
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2"
+  }
+}
