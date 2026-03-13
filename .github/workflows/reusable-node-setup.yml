@@ -1,0 +1,33 @@
+name: Reusable — Node.js Setup
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        description: Node.js version to use
+        required: false
+        type: string
+        default: '20.x'
+    secrets:
+      NPM_TOKEN:
+        description: Token for private npm registry (optional)
+        required: false
+
+jobs:
+  setup:
+    name: Setup Node.js ${{ inputs.node-version }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js ${{ inputs.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: npm
+
+      - name: Install Dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm ci
